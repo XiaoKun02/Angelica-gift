@@ -3,56 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Una canzone per te... 🎵</title>
+    <title>Un regalo musicale per te 🎵</title>
     <style>
         body {
             background-color: #121212;
             color: #ffffff;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
+            overflow: hidden;
         }
-        .loader-container {
+
+        .container {
             text-align: center;
+            padding: 20px;
         }
-        .spinner {
-            border: 4px solid rgba(255, 255, 255, 0.1);
-            width: 50px;
-            height: 50px;
+
+        h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        p {
+            font-size: 1rem;
+            color: #b3b3b3;
+            margin-bottom: 40px;
+        }
+
+        /* Il pulsante a forma di vinile */
+        .vinyl-button {
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, #282828 40%, #1a1a1a 41%, #000000 70%);
             border-radius: 50%;
-            border-left-color: #ff3a3a; /* Rosso tipico dell'app musicale come tocco di stile */
-            animation: spin 1s linear infinite;
-            margin: 0 auto 20px auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6), inset 0 0 10px rgba(255,255,255,0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+            animation: spin 6s linear infinite;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border: none;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
         }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        h1 { font-size: 1.2rem; font-weight: 400; letter-spacing: 0.5px; }
+
+        /* Effetto pressione sul vinile */
+        .vinyl-button:active {
+            transform: scale(0.95);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+        }
+
+        /* Il centro del vinile (Etichetta rossa) */
+        .vinyl-center {
+            width: 60px;
+            height: 60px;
+            background-color: #ff3a3a; /* Rosso NetEase */
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 5px rgba(0,0,0,0.5);
+        }
+
+        /* Il foro centrale del disco */
+        .vinyl-hole {
+            width: 10px;
+            height: 10px;
+            background-color: #121212;
+            border-radius: 50%;
+        }
+
+        /* Animazione della rotazione del vinile */
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        .note-icon {
+            font-size: 2rem;
+            margin-top: 30px;
+            opacity: 0.6;
+        }
     </style>
     <script>
-        // Elenco dei deep link delle canzoni
-        const canzoni = [
-            "orpheus://song/3324822346/?/autoplay=1",       // 玲子4.0
-            "orpheus://song/2719561264/?/autoplay=1",       // No Complains
-            "orpheus://song/2063131354/?/autoplay=1",         // 你的
-            "orpheus://song/533259686/?/autoplay=1",       // 病变
-            "orpheus://song/3358576770/?/autoplay=1",      // 正当生意
-        ];
-
-        window.onload = function() {
-            // Sceglie una canzone a caso dall'elenco
-            const linkCasuale = canzoni[Math.floor(Math.random() * canzoni.length)];
-            
-            // Forza l'apertura immediata dell'applicazione musicale
-            window.location.href = linkCasuale;
-        };
-    </script>
-</head>
-<body>
-    <div class="loader-container">
-        <div class="spinner"></div>
-        <h1>Scegliendo la traccia perfetta... 🎧</h1>
-    </div>
-</body>
-</html>
+        // Le tue
