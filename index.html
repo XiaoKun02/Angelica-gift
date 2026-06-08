@@ -25,15 +25,29 @@
     <img id="random-img" src="" alt="Caricamento...">
 
     <script>
-        // Lista dei nomi delle tue immagini
+        // Lista dei nomi delle tue immagini (con la "Immagini" maiuscola)
         const immagini = [
-            'immagini/1.jpg',
-            'immagini/2.jpg',
-            'immagini/3.jpg'
+            './immagini/1.jpg',
+            './immagini/2.jpg',
+            './immagini/3.jpg'
         ];
 
-        // Funzione Random
-        const indiceCasuale = Math.floor(Math.random() * immagini.length);
+        // Recupera l'indice dell'ultima immagine mostrata dall'archivio del browser
+        const ultimoIndice = localStorage.getItem('ultimoIndice');
+        
+        let indiceCasuale;
+
+        // Se c'è più di un'immagine, cicla finché non ne trova una diversa dall'ultima
+        if (immagini.length > 1) {
+            do {
+                indiceCasuale = Math.floor(Math.random() * immagini.length);
+            } while (indiceCasuale == ultimoIndice); // Ripete se è uguale all'ultima
+        } else {
+            indiceCasuale = 0; // Se c'è solo una foto, mostra sempre quella
+        }
+
+        // Salva il nuovo indice per la prossima volta
+        localStorage.setItem('ultimoIndice', indiceCasuale);
         
         // Mostra l'immagine pescata
         document.getElementById('random-img').src = immagini[indiceCasuale];
