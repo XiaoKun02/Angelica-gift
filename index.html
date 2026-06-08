@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Immagine Casuale</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #000;
+        }
+        img {
+            max-width: 100%;
+            max-height: 100vh;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+
+    <img id="random-img" src="" alt="Caricamento...">
+
+    <script>
+        // Lista dei nomi delle tue immagini
+        const immagini = [
+            'immagini/foto1.jpg',
+            'immagini/foto2.jpg',
+            'immagini/foto3.jpg'
+        ];
+
+        // Funzione Random
+        const indiceCasuale = Math.floor(Math.random() * immagini.length);
+        
+        // Mostra l'immagine pescata
+        document.getElementById('random-img').src = immagini[indiceCasuale];
+    </script>
+</body>
+</html>
