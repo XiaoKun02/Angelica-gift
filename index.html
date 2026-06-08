@@ -93,4 +93,38 @@
         }
     </style>
     <script>
-        // Le tue
+        // Le tue 5 canzoni preferite
+        const canzoni = [
+            "orpheus://song/3324822346/?/autoplay=1",     // 玲子4.0
+            "orpheus://song/2719561264/?/autoplay=1",     // No Complains
+            "orpheus://song/2063131354/?/autoplay=1",     // 你的
+            "orpheus://song/533259686/?/autoplay=1",      // 病变
+            "orpheus://song/3358576770/?/autoplay=1"      // 正当生意
+        ];
+
+        function ascoltaCanzone() {
+            // Sceglie una canzone a caso
+            const linkCasuale = canzoni[Math.floor(Math.random() * canzoni.length)];
+            
+            // Reindirizza immediatamente (essendo un click dell'utente, bypassa i blocchi del browser)
+            window.location.href = linkCasuale;
+        }
+    </script>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Il tuo Jukebox Personale 🖤</h1>
+        <p>Tocca il disco per scoprire la canzone di oggi...</p>
+        
+        <button class="vinyl-button" onclick="ascoltaCanzone()">
+            <div class="vinyl-center">
+                <div class="vinyl-hole"></div>
+            </div>
+        </button>
+        
+        <div class="note-icon">🎵</div>
+    </div>
+
+</body>
+</html>
