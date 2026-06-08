@@ -3,54 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Immagine Casuale</title>
+    <title>Una canzone per te... 🎵</title>
     <style>
         body {
-            margin: 0;
+            background-color: #121212;
+            color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #000;
+            margin: 0;
         }
-        img {
-            max-width: 100%;
-            max-height: 100vh;
-            object-fit: contain;
+        .loader-container {
+            text-align: center;
         }
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border-left-color: #ff3a3a; /* Rosso tipico dell'app musicale come tocco di stile */
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px auto;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        h1 { font-size: 1.2rem; font-weight: 400; letter-spacing: 0.5px; }
     </style>
-</head>
-<body>
-
-    <img id="random-img" src="" alt="Caricamento...">
-
     <script>
-        // Lista dei nomi delle tue immagini (con la "Immagini" maiuscola)
-        const immagini = [
-            './immagini/1.jpg',
-            './immagini/2.jpg',
-            './immagini/3.jpg'
+        // Elenco dei deep link delle canzoni
+        const canzoni = [
+            "orpheus://song/32507038/?/autoplay=1",       // 演员
+            "orpheus://song/27955654/?/autoplay=1",       // 其实
+            "orpheus://song/169185/?/autoplay=1",         // 认真的雪
+            "orpheus://song/27955653/?/autoplay=1",       // 你还要我怎样
+            "orpheus://song/415792881/?/autoplay=1",      // 刚刚好
+            "orpheus://song/1463165983/?/autoplay=1",     // 天外来物
+            "orpheus://song/516657051/?/autoplay=1",      // 像风一样
+            "orpheus://song/32192436/?/autoplay=1",       // 绅士
+            "orpheus://song/27808044/?/autoplay=1",       // 丑八怪
+            "orpheus://song/468517654/?/autoplay=1",      // 动物世界
+            "orpheus://song/417859631/?/autoplay=1",      // 我好像在哪里见过你
+            "orpheus://song/2648841571/?/autoplay=1"      // 租购
         ];
 
-        // Recupera l'indice dell'ultima immagine mostrata dall'archivio del browser
-        const ultimoIndice = localStorage.getItem('ultimoIndice');
-        
-        let indiceCasuale;
-
-        // Se c'è più di un'immagine, cicla finché non ne trova una diversa dall'ultima
-        if (immagini.length > 1) {
-            do {
-                indiceCasuale = Math.floor(Math.random() * immagini.length);
-            } while (indiceCasuale == ultimoIndice); // Ripete se è uguale all'ultima
-        } else {
-            indiceCasuale = 0; // Se c'è solo una foto, mostra sempre quella
-        }
-
-        // Salva il nuovo indice per la prossima volta
-        localStorage.setItem('ultimoIndice', indiceCasuale);
-        
-        // Mostra l'immagine pescata
-        document.getElementById('random-img').src = immagini[indiceCasuale];
+        window.onload = function() {
+            // Sceglie una canzone a caso dall'elenco
+            const linkCasuale = canzoni[Math.floor(Math.random() * canzoni.length)];
+            
+            // Forza l'apertura immediata dell'applicazione musicale
+            window.location.href = linkCasuale;
+        };
     </script>
+</head>
+<body>
+    <div class="loader-container">
+        <div class="spinner"></div>
+        <h1>Scegliendo la traccia perfetta... 🎧</h1>
+    </div>
 </body>
 </html>
